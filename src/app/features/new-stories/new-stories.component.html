@@ -1,14 +1,17 @@
-<div *ngFor="let story of newStories$ | async">
-    <div>
-        <a href="{{story.url}}">{{ story.title }}</a>
-        <span> ({{story.url | domain}})</span>
-    </div>
+<mat-card class="mb-3" *ngFor="let story of newStories$ | async">
+  <mat-card-title>
+    <a href="{{story.url}}">{{ story.title }}</a>
+    <mat-card-subtitle> ({{story.url | domain}})</mat-card-subtitle>
+  </mat-card-title>
 
-    <div>
-        <span *ngIf="story.score">{{ story.score }} points</span>
-        <span *ngIf="story.by"> by {{ story.by }}</span>
-        <span *ngIf="story.time"> {{ story.time | timeago:live }}</span>
-        <span *ngIf="story.id"> {{ getCommentsLength(story.id) }} comments</span>
-    </div>
-    <hr>
-</div>
+  <mat-divider></mat-divider>
+
+  <mat-card-content class="pt-3">
+    <mat-chip-list class="d-flex flex-column">
+      <mat-chip *ngIf="story.score">{{story.score}} points</mat-chip>
+      <mat-chip *ngIf="story.by"> By: {{ story.by }}</mat-chip>
+      <mat-chip *ngIf="story.time">{{ story.time | timeago:live }}</mat-chip>
+      <mat-chip *ngIf="story.id">{{ getCommentsLength(story.id) }} comments</mat-chip>
+    </mat-chip-list>
+  </mat-card-content>
+</mat-card>
