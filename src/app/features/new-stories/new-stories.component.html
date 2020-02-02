@@ -1,0 +1,14 @@
+<div *ngFor="let story of newStories$ | async">
+    <div>
+        <a href="{{story.url}}">{{ story.title }}</a>
+        <span> ({{story.url | domain}})</span>
+    </div>
+
+    <div>
+        <span *ngIf="story.score">{{ story.score }} points</span>
+        <span *ngIf="story.by"> by {{ story.by }}</span>
+        <span *ngIf="story.time"> {{ story.time | timeago:live }}</span>
+        <span *ngIf="story.id"> {{ getCommentsLength(story.id) }} comments</span>
+    </div>
+    <hr>
+</div>
